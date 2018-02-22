@@ -10,10 +10,16 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("imuView.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("imuView.fxml"));
+        Parent root = loader.load();
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        Scene scene = new Scene(root, 400, 600);
+        primaryStage.setScene(scene);
         primaryStage.show();
+
+        IMUController controller = loader.getController();
+        controller.buildCamera();
     }
 
 
