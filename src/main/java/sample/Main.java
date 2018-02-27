@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import jssc.SerialPortException;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,6 +35,23 @@ public class Main extends Application {
         System.out.println(Arrays.toString(SerialReader.getPortList()));
 
         SerialReader serialReader = new SerialReader(115200, "COM6");
+
+        List<IMU> imus = new ArrayList<>();
+        imus.add(new MachonyIMU(DELAY));
+        imus.add(new MadgwickIMU(DELAY));
+        imus.add(new ComplimentIMU(DELAY));
+        imus.add(new SimpleIMU(DELAY));
+
+        imus.forEach((imu)->{
+            FXMLLoader imuLoader = new FXMLLoader();
+            imuLoader.setLocation(getClass().getResource("/imuView.fxml"));
+            try {
+                Parent imuRoot = imuLoader.load();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
         //MahonyAHRS mahonyAHRS = new MahonyAHRS(0.22f);
         //MadgwickAHRS madgwickAHRS = new MadgwickAHRS(0.1f);
