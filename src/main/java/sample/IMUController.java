@@ -55,6 +55,9 @@ public class IMUController {
     @FXML
     private Label yawLabel;
 
+    @FXML
+    private Label nameLabel;
+
 
     PerspectiveCamera camera;
     SubScene subScene;
@@ -178,6 +181,8 @@ public class IMUController {
     }
 
     public void setIMU(IMU imu) {
+
+        System.out.println("set");
         this.imu = imu;
         rotateX.angleProperty().bind(imu.pitchProperty());
         rotateY.angleProperty().bind(imu.yawProperty());
@@ -192,23 +197,19 @@ public class IMUController {
             });
         });
         imu.pitchProperty().addListener((a,b,c)->{
-            pitchLabel.setText(String.valueOf(c.intValue()));
+            Platform.runLater(()->{
+                pitchLabel.setText(String.valueOf(c.intValue()));
+            });
         });
         imu.yawProperty().addListener((a,b,c)->{
-            yawLabel.setText(String.valueOf(c.intValue()));
+            Platform.runLater(()->{
+                yawLabel.setText(String.valueOf(c.intValue()));
+            });
         });
 
     }
 
-    private class MyStringConverternew extends StringConverter<Number> {
-        @Override
-        public String toString(Number object) {
-            return String.valueOf(Math.round((Double) object));
-        }
-
-        @Override
-        public Number fromString(String string) {
-            return null;
-        }
+    public void setName(String name){
+        nameLabel.setText(name);
     }
 }

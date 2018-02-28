@@ -10,7 +10,7 @@ public class MachonyIMU extends IMU {
 
     public MachonyIMU(int time){
         super(time);
-        this.algorithm = new MahonyAHRS(0.05f);
+        this.algorithm = new MahonyAHRS(this.time);
     }
 
 
@@ -22,7 +22,7 @@ public class MachonyIMU extends IMU {
     @Override
     public void update(List<Float> rawData) {
         float[] angels = algorithm.updateIMU(rawData.get(0), rawData.get(1), rawData.get(2), rawData.get(3), rawData.get(4), rawData.get(5));
-        yaw.setValue(angels[0]);
+        //yaw.setValue(angels[0]);
         roll.setValue(angels[1]);
         pitch.setValue(angels[2]);
     }

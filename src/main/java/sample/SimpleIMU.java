@@ -17,8 +17,8 @@ public class SimpleIMU extends IMU {
     @Override
     public void update(List<Float> rawData) {
 
-        System.out.println(90 - Math.toDegrees(Math.acos(rawData.get(3))));
-        pitch.setValue(90 - Math.toDegrees(Math.acos(rawData.get(3))));
-        roll.setValue(90 - Math.toDegrees(Math.acos(rawData.get(4))));
+        //System.out.println(90 - Math.toDegrees(Math.acos(rawData.get(3))));
+        roll.setValue(90 - Math.toDegrees(Math.acos(rawData.get(3))));
+        pitch.setValue(90 - Math.toDegrees(Math.acos(rawData.get(4))));
     }
 }

@@ -32,9 +32,9 @@ public class ComplimentIMU extends IMU {
         angle_gz = angle_gz + rawData.get(2) * this.time/1000.0;
         angle_gz = angle_gz*(1-FK) + angle_az*FK;
 
-        System.out.println(angle_gx+" "+angle_gy+" "+angle_gz);
-        pitch.setValue(angle_gx);
-        roll.setValue(angle_gy);
+        //System.out.println(angle_gx+" "+angle_gy+" "+angle_gz);
+        pitch.setValue(angle_gy);
+        roll.setValue(angle_gx);
         //yaw.setValue(angle_gz);
     }
 }

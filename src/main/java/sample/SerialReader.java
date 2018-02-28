@@ -75,6 +75,9 @@ public class SerialReader {
             }
         }
     }
+    public void close() throws SerialPortException {
+        serialPort.closePort();
+    }
 
 
 

@@ -14,10 +14,11 @@ public abstract class IMU {
 
     public IMU(int time){
         this.time = time;
-        this.frequency = 1/time;
+        this.frequency = 1f/time;
         pitch = new SimpleDoubleProperty(0);
         roll = new SimpleDoubleProperty(0);
         yaw = new SimpleDoubleProperty(0);
+        System.out.println(1/50);
     }
 
     DoubleProperty pitchProperty(){
