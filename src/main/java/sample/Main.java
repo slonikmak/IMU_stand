@@ -62,34 +62,16 @@ public class Main extends Application {
             }
         });
 
-        //MahonyAHRS mahonyAHRS = new MahonyAHRS(0.22f);
-        //MadgwickAHRS madgwickAHRS = new MadgwickAHRS(0.1f);
-
-        //MadgwickIMU imu = new MadgwickIMU();
-
-        //IMU imu = new SimpleIMU(50);
-
-        //MachonyIMU imu = new MachonyIMU();
-
-        //IMU imu = new ComplimentIMU(DELAY);
-
-        //controller.setIMU(imu);
-
         serialReader.setOnGetString(s -> {
 
                 Platform.runLater(()->{
                     try {
-                        //System.out.println(s);
                         List<Float> data = Arrays.stream(s.split(",")).map(Float::parseFloat).collect(Collectors.toList());
                         //float[] angels = mahonyAHRS.updateIMU(data.get(0), data.get(1), data.get(2), data.get(3), data.get(4), data.get(5));
                         imus.forEach((imu)->imu.update(data));
-                        //System.out.println(Arrays.toString(madgwickAHRS.get360deg()));
-                        //System.out.println("Result: "+angels[0]+" "+angels[1]+" "+angels[2]);
                     } catch (NumberFormatException ignored) {
                     }
                 });
-
-
         });
 
         primaryStage.setOnCloseRequest(event -> {

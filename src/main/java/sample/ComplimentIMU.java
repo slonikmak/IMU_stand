@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ComplimentIMU extends IMU {
     private double angle_gx = 0, angle_gy=0, angle_gz=0;
-    private final double FK = 0.1;
+    private final double FK = 0.5;
 
     public ComplimentIMU(int time){
         super(time);
